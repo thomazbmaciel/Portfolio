@@ -1,5 +1,6 @@
 package com.thomaz.port.Models;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +12,11 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @Column(nullable=false)
     private String productName;
+    @Column(nullable=false)
     private Integer inStock;
+    @Column(nullable=false)
     private String productOwner;
 
     public Integer getId() {
