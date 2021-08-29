@@ -3,8 +3,8 @@ package com.thomaz.port.Controllers;
 import java.util.Map;
 import java.util.Optional;
 
-import com.thomaz.port.Models.User;
-import com.thomaz.port.Models.UserRepository;
+import com.thomaz.port.Models.AppUser;
+import com.thomaz.port.Models.AppUserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,32 +16,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
-public class UserRestController {
+@RequestMapping("/appUser")
+public class AppUserRestController {
     
     @Autowired
-    private UserRepository userRepository;
+    private AppUserRepository appUserRepository;
     
     @GetMapping("/all")
-    public Iterable<User> findAll(){
-        return userRepository.findAll();
+    public Iterable<AppUser> findAll(){
+        return appUserRepository.findAll();
     }
 
     @PostMapping("/new")
-    public String create(@RequestBody User user){
-        userRepository.save(user);
-        return "User " + user.getName() + " was created successfully.";
+    public String create(@RequestBody AppUser appUser){
+        appUserRepository.save(appUser);
+        return "appUser " + appUser.getName() + " was created successfully.";
     }
 
     @PutMapping("/update")
-    public String update(@RequestBody User user){
-        Optional<User> existingUser = userRepository.findById(user.getId());
-        if(existingUser.isPresent()){
-            userRepository.save(user);
-            return "User " + user.getName() + " was updated successfully.";
+    public String update(@RequestBody AppUser appUser){
+        Optional<AppUser> existingAppUser = appUserRepository.findById(appUser.getId());
+        if(existingAppUser.isPresent()){
+            appUserRepository.save(appUser);
+            return "appUser " + appUser.getName() + " was updated successfully.";
         }
         else {
-            return "User does not exist";
+            return "appUser does not exist";
         }
         
     }
@@ -49,7 +49,7 @@ public class UserRestController {
     @DeleteMapping("/delete")
     public String delete(@RequestBody Map<String, Integer> json){
         Integer id = json.get("id");
-        userRepository.deleteById(id);
-        return "User was deleted.";
+        appUserRepository.deleteById(id);
+        return "appUser was deleted.";
     }
 }

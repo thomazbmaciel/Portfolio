@@ -2,6 +2,6 @@ package com.thomaz.port.Models;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
+public interface AppUserRepository extends CrudRepository<AppUser, Integer> {
     
 }
